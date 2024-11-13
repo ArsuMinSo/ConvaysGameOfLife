@@ -1,4 +1,4 @@
-import os, time, random, numpy, keyboard
+import os, time, random, numpy#, keyboard
 from matMul import rotate_matrix
 #from numba import jit, cuda
 
@@ -99,44 +99,6 @@ def getNumberOfNeignours(grid, x, y):
 
 
 def main():
-
-    shapes = {
-    "blinker":[
-        [1, 1, 1]
-    ],
-    "toad":[
-        [0, 1, 1, 1],
-        [1, 1, 1, 0]
-    ],
-    "beacon":[
-        [1, 1, 0, 0],
-        [1, 1, 0, 0],
-        [0, 0, 1, 1],
-        [0, 0, 1, 1]
-    ],
-    "glider":[
-        [0, 0, 1],
-        [1, 0, 1],
-        [0, 1, 1]
-    ],
-    "idlerLarge":[
-        [0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1],
-        [1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1],
-        [1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1],
-        [0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0],
-        [1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1],
-        [1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1],
-        [1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0],
-        ]
-    }
-
-
     lstOldGrid = numpy.zeros([WIDTH, HEIGHT], dtype=int)
 
     """
@@ -158,12 +120,13 @@ def main():
     
     while True:
         start = time.time()
+        """
         if keyboard.is_pressed("q"):
             break
         elif keyboard.is_pressed("UP"):
             speed *= 1.1
         elif keyboard.is_pressed("DOWN"):
-            speed *= 0.9
+            speed *= 0.9"""
             
         
         strSpeed = str(speed)
