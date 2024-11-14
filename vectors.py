@@ -23,6 +23,15 @@ class Vector2:
         else:
             raise TypeError("Operands must be an instance of Vector2")
     
+    def __mul__(self, other):
+        # Subtraction of two 2-dimensional vectors
+        if isinstance(other, Vector2):
+            return Vector2(self.x * other.x, self.y * other.y)
+        elif isinstance(other, (int, float)):
+            return Vector2(self.x * other, self.y * other)
+        else:
+            raise TypeError("Operands must be an instance of Vector2")
+
     def dotProduct(self, other):
         # Dot product of two 2-dimensional vectors (returns a scalar)
         if isinstance(other, Vector2):

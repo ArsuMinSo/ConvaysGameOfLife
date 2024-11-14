@@ -3,6 +3,9 @@ import keyboard
 import os
 import time
 
+from player import Player
+from worldMap import Map
+
 charSet = " `.-':_,^=;><+!rc*/z?sLTv)J7(|Fi{C}fI31tlu[neoZ5Yxjya]2ESwqkP6h9d4VpOGbUAKXHm8RD#$Bg0MNWQ%&@█"
 lstDarknessOfCharset = [0, 0.0751, 0.0829, 0.0848, 0.1227, 0.1403, 0.1559, 0.185, 0.2183, 0.2417, 0.2571, 
                         0.2852, 0.2902, 0.2919, 0.3099, 0.3192, 0.3232, 0.3294, 0.3384, 0.3609, 0.3619, 
@@ -23,57 +26,19 @@ lstGrid = [
     [1, 1, 1, 1, 1],
 ]
 
-SIZE_OF_BLOCKS = 10
+SIZE_OF_BLOCKS = 3
 SIZE_OF_PLAYER = 1
 
-class Player:
-    def __init__(self, pos: Vector2):
-        # Assign position directly if `pos` is already a `Vector2` instance
-        if isinstance(pos, Vector2):
-            self.pos = pos
-        else:
-            raise TypeError("pos must be an instance of Vector2")
-
-        # Optionally, assign `x` and `y` separately for direct access
-        self.x = pos.x
-        self.y = pos.y
-
-    def __repr__(self):
-        return f"Player(position={self.position})"
-
-
-    def scanForMovement(self):
-        PLAYER_MOVEMET = .5
-        if keyboard.is_pressed("Up"): self.pos.y -= PLAYER_MOVEMET
-        if keyboard.is_pressed("down"): self.pos.y += PLAYER_MOVEMET
-        if keyboard.is_pressed("left"): self.pos.x -= PLAYER_MOVEMET
-        if keyboard.is_pressed("right"): self.pos.x += PLAYER_MOVEMET
-
-def drawMap(mapWorld, playerPosition):# playerpos 1.0256, 3.8430
-    strMap = ""
-    for y in range(len(mapWorld[0]) * SIZE_OF_BLOCKS):
-        for x in range(len(mapWorld)* SIZE_OF_BLOCKS):
-            if Vector2(x, y).xy == Vector2(round(playerPosition.x), round(playerPosition.y)).xy:
-                strMap += "☻☻"
-            elif mapWorld[x//SIZE_OF_BLOCKS][y//SIZE_OF_BLOCKS] == 0:
-                strMap += "  "
-            else:
-                strMap += "██"
-        strMap += "\n"
-    return strMap
-
-
-
-
-player = Player(Vector2(15, 15))
+mapGrid = Map(lstGrid, SIZE_OF_BLOCKS)
+player = Player(mapGrid.findFirstEmptySpace() * SIZE_OF_BLOCKS)
 
 def main():
+    os.system("cls")
     player.scanForMovement()
     print(player.pos)
-    print(drawMap(mapWorld = lstGrid, playerPosition = player.pos))
+    print(mapGrid.drawMap(playerPosition = player.pos))
     time.sleep(1/20)
-    os.system("cls")
 
-while not keyboard.is_pressed("q"):
+while not keyboard.is_pressed("Esc"):
     main()
 exit()    
